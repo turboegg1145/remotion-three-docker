@@ -1,0 +1,9 @@
+node_modules
+out
+.git
+.gitignore
+*.mp4
+*.png
+Dockerfile
+docker-compose.yml
+README.md

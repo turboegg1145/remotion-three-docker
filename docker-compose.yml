@@ -1,0 +1,52 @@
+name: remotion-three-docker
+
+services:
+  # One-shot 3D render. Output lands in ./out on the host.
+  render:
+    build: .
+    image: remotion-three-docker:latest
+    init: true
+    shm_size: "1gb"
+    environment:
+      REMOTION_GL: swangle
+    volumes:
+      - ./out:/app/out
+    command: ["npm", "run", "render"]
+
+  # Render a single PNG frame (default: frame 96).
+  still:
+    profiles: ["tools"]
+    build: .
+    image: remotion-three-docker:latest
+    init: true
+    shm_size: "1gb"
+    environment:
+      REMOTION_GL: swangle
+    volumes:
+      - ./out:/app/out
+    command: ["npm", "run", "still"]
+
+  # Remotion Studio for interactive editing.
+  studio:
+    profiles: ["tools"]
+    build: .
+    image: remotion-three-docker:latest
+    init: true
+    shm_size: "1gb"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./out:/app/out
+    environment:
+      REMOTION_GL: swangle
+    command:
+      [
+        "npx",
+        "remotion",
+        "studio",
+        "src/index.ts",
+        "--host=0.0.0.0",
+        "--port=3000",
+      ]

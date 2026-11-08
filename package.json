@@ -1,0 +1,29 @@
+{
+  "name": "remotion-three-docker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A deterministic Remotion + Three.js 3D title sequence, rendered headlessly inside Docker.",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "node render.mjs",
+    "still": "node render.mjs --still",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@react-three/fiber": "9.8.2",
+    "@remotion/bundler": "4.0.541",
+    "@remotion/cli": "4.0.541",
+    "@remotion/renderer": "4.0.541",
+    "@remotion/three": "4.0.541",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.541",
+    "three": "0.187.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "@types/three": "0.187.0",
+    "typescript": "5.9.3"
+  }
+}
