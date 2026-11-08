@@ -50,6 +50,22 @@ docker run --rm -v "$PWD/out:/app/out" remotion-three-docker
 
 在 2 核、无 GPU 的容器中，本示例实测：打包约 15 秒，180 帧渲染约 42 秒（SwiftShader 软件渲染）。
 
+### 直接拉取已发布的镜像（GHCR）
+
+镜像已推送到 GitHub Container Registry：`ghcr.io/turboegg1145/remotion-three-docker`（private package，拉取前需要登录）。
+
+```bash
+# 用本机 gh 的 token 登录 GHCR
+gh auth token | docker login ghcr.io -u turboegg1145 --password-stdin
+
+docker run --rm -v "$PWD/out:/app/out" \
+  ghcr.io/turboegg1145/remotion-three-docker:latest
+```
+
+标签：`latest` 和 `v1.0.0` 指向同一个镜像。
+
+GHCR 页面：[remotion-three-docker](https://github.com/users/turboegg1145/packages/container/package/remotion-three-docker)
+
 ### 渲染单帧 PNG（调试画面最方便）
 
 ```bash
