@@ -52,11 +52,10 @@ docker run --rm -v "$PWD/out:/app/out" remotion-three-docker
 
 ### 直接拉取已发布的镜像（GHCR）
 
-镜像已推送到 GitHub Container Registry：`ghcr.io/turboegg1145/remotion-three-docker`（private package，拉取前需要登录）。
+镜像已推送到 GitHub Container Registry（**public**，无需登录即可拉取）：
 
 ```bash
-# 用本机 gh 的 token 登录 GHCR
-gh auth token | docker login ghcr.io -u turboegg1145 --password-stdin
+docker pull ghcr.io/turboegg1145/remotion-three-docker:latest
 
 docker run --rm -v "$PWD/out:/app/out" \
   ghcr.io/turboegg1145/remotion-three-docker:latest
